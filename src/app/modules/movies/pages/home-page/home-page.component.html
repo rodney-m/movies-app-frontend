@@ -1,0 +1,45 @@
+<div class="banner">
+    <h1>The best movies, tv shows and series</h1>
+    <p>Get the ultimate movie experience in the comfort of your own home. Sign up now to enjoy unlimited streaming of the latest blockbusters and classics.</p>
+</div>
+
+<div class="popular">
+
+    <h1>Popular</h1>
+
+    <div class="movies-list">
+        <p *ngIf="loading">loading....</p>
+        <p *ngIf="!loading && movies.length == 0">No results</p>
+      <div class="movie" *ngFor="let movie of movies">
+        <div class="image-wrapper">
+          <img
+            [src]="'https://image.tmdb.org/t/p/original' + movie?.backdrop_path"
+          />
+        </div>
+    
+        <div class="movie-info">
+          <h3>{{ movie?.title }}</h3>
+          <span>
+            <i class="fa-solid fa-star" style="color: #ff4b2b"></i> &nbsp;
+            {{ movie?.vote_average }}</span
+          >
+        </div>
+    
+        <div class="overview">
+          <h3>Overview</h3>
+          <p>{{ movie?.overview }}</p>
+          <br />
+          <button class="know-more">
+            Add to favourites &nbsp;
+            <i class="fa-solid fa-heart" style="color: #ffffff"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="pagination">
+  <button>Prev</button>
+  <div class="current-page">1</div>
+  <button>Next</button>
+</div>

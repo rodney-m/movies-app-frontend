@@ -1,1 +1,431 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+// variables
+
+$orange-color: #ff4b2b;
+$breakpoint: 900px;
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid $orange-color;
+  background-color: $orange-color;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+
+.errors {
+  color: red;
+  font-size: 0.8rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+
+  .logo {
+    h1 {
+      font-size: 1.3rem;
+    }
+  }
+
+  .menu-items {
+    a {
+      margin-right: 1rem;
+      border-width: 0%;
+      transition: all ease-in 500ms;
+      border-bottom: 2px solid transparent;
+
+      &:hover {
+        border-width: 2px;
+        border-bottom-color: $orange-color;
+      }
+    }
+  }
+
+  .mobile-menu-button {
+    @media (min-width: $breakpoint) {
+      display: none;
+    }
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      padding: 13px;
+      cursor: pointer;
+
+      span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid #333;
+      }
+    }
+  }
+}
+
+// home page
+
+.banner {
+  min-height: 60vh;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4)),
+    url(assets/home-bg.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: start;
+  line-height: 1.5;
+  padding: 2rem;
+
+  p{
+      color: #fff;
+      max-width: 450px;
+  }
+
+  h1{
+    color: #ccc;
+    max-width: 450px;
+
+  }
+}
+
+
+.popular{
+
+    padding: 2rem;
+
+    h1{
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .movies-list{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    
+        .movie {
+            width: 300px;
+            min-height: 400px;
+            margin: 1rem;
+            border-radius: 3px;
+            box-shadow: 0.2px 4px 5px rgba(0,0,0,0.1);
+            background-color: var(--secondary-color);
+            position:relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+    
+            img{
+                width:100%;
+                height: 100%;
+                object-fit: cover;
+            }
+    
+            .image-wrapper{
+                flex: 1;
+            }
+        }
+        
+        
+    
+        
+        .movie-info{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .movie-info h3{
+            margin-top: 0;
+            font-size: .9rem;
+        }
+        
+        p{
+            font-size: .8rem;
+        }
+        
+        .movie-info span{
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        
+        .overview{
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:0;
+            background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,.8));
+            color: #f6f5f7;
+            padding: 1rem;
+            max-height: 100%;
+            transform:translateY(101%);
+            transition:transform 0.3s ease-in;
+        }
+        
+        .movie:hover .overview{
+            transform:translateY(0)
+        }        
+        
+    }
+}
+
+
+
+.pagination{
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    .current-page{
+        height: 3rem;
+        width: 3rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        border: 1px solid $orange-color;
+        font-weight: bold;
+    }
+
+    margin-bottom: 3rem;
+}
+
+.login-wrapper {
+  background: #f6f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  margin: -20px 0 50px;
+
+  h1 {
+    font-weight: bold;
+    margin: 0;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+  }
+
+  button {
+    border-radius: 20px;
+    border: 1px solid $orange-color;
+    background-color: $orange-color;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+  }
+
+  button:active {
+    transform: scale(0.95);
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  button.ghost {
+    background-color: transparent;
+    border-color: #ffffff;
+  }
+
+  form {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+  }
+
+  input {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  .container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+  }
+
+  .form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+
+  .sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+  }
+
+  .container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+  }
+
+  .sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+  }
+
+  @keyframes show {
+    0%,
+    49.99% {
+      opacity: 0;
+      z-index: 1;
+    }
+
+    50%,
+    100% {
+      opacity: 1;
+      z-index: 5;
+    }
+  }
+
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+  }
+
+  .container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+  }
+
+  .overlay {
+    background: #ff416c;
+    background: -webkit-linear-gradient(to right, $orange-color, #ff416c);
+    background: linear-gradient(to right, $orange-color, #ff416c);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #ffffff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .container.right-panel-active .overlay {
+    transform: translateX(50%);
+  }
+
+  .overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .overlay-left {
+    transform: translateX(-20%);
+  }
+
+  .container.right-panel-active .overlay-left {
+    transform: translateX(0);
+  }
+
+  .overlay-right {
+    right: 0;
+    transform: translateX(0);
+  }
+
+  .container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+  }
+}
+
+

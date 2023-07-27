@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'movies_app_fe';
+
+  get currentUrl() : string{
+
+    return window.location.pathname
+  }
 }

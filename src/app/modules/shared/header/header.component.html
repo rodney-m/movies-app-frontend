@@ -1,0 +1,26 @@
+<header>
+  <div class="logo">
+    <h1>MoviesApp</h1>
+  </div>
+  <div class="menu-items">
+    <a href="#">Home</a>
+    <a href="#">Movies</a>
+    <a href="#">Series</a>
+    <a href="#">Pricing</a>
+  </div>
+
+  <div class="cta">
+    <button *ngIf="!isLoggedIn">Sign In</button>
+    <button *ngIf="isLoggedIn" (click)="signOut()">Sign Out</button>
+  </div>
+
+  <div class="mobile-menu-button">
+    <input type="checkbox"  />
+
+    <label for="nav-check" >
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+</header>
