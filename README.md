@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Project Info
 
-A live instance of this site can be found here [https://agletmoviesapp.netlify.app/contact](https://agletmoviesapp.netlify.app/contact) .
+A live instance of this site can be found here [https://agletmoviesapp.netlify.app](https://agletmoviesapp.netlify.app) .
 The project uses [https://developer.themoviedb.org/docs/getting-started](TMDB) api to query for movies. It uses a nodejs backend for Authentication and the backend can be found here [https://github.com/rodney-m/movies-app-backend](https://github.com/rodney-m/movies-app-backend).
 
 ##Logging in into the live instance 
