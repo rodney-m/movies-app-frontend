@@ -7,6 +7,7 @@
 // variables
 
 $orange-color: #ff4b2b;
+$orange-color-lighter: #ff4b2bcf;
 $breakpoint: 900px;
 
 body {
@@ -25,6 +26,19 @@ button {
   text-transform: uppercase;
   transition: transform 80ms ease-in;
   cursor: pointer;
+
+  &:hover {
+    background-color: $orange-color-lighter;
+  }
+
+  &:disabled {
+    background-color: #a9a9a9;
+    color: #ffffff;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+    border: none;
+  }
 }
 
 .errors {
@@ -33,55 +47,61 @@ button {
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 1rem;
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 
-  .logo {
-    h1 {
-      font-size: 1.3rem;
-    }
-  }
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      @media (max-width: $breakpoint) {
+        display: none;
+      }
 
-  .menu-items {
-    a {
-      margin-right: 1rem;
-      border-width: 0%;
-      transition: all ease-in 500ms;
-      border-bottom: 2px solid transparent;
+      a {
+        border-width: 0%;
+        transition: all ease-in 500ms;
+        border-bottom: 2px solid transparent;
 
-      &:hover {
+        &:hover {
+          border-width: 2px;
+          border-bottom-color: $orange-color;
+        }
+      }
+
+      .active {
         border-width: 2px;
         border-bottom-color: $orange-color;
       }
     }
-  }
 
-  .mobile-menu-button {
-    @media (min-width: $breakpoint) {
-      display: none;
-    }
-    input[type="checkbox"] {
-      display: none;
-    }
-
-    label {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      padding: 13px;
-      cursor: pointer;
-
-      span {
-        display: block;
-        width: 25px;
-        height: 10px;
-        border-top: 2px solid #333;
+    .mobile {
+      @media (min-width: $breakpoint) {
+        display: none;
       }
     }
   }
+
+  .mobile-menu {
+   
+    @media (min-width: $breakpoint) {
+      display: none;
+    }
+    a {
+      padding: 10px;
+      display: block;
+    }
+
+    a:hover {
+      background-color: rgba(255, 75, 43, 0.325);
+    }
+  }
 }
+
 
 // home page
 
@@ -95,130 +115,120 @@ header {
 
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   align-items: start;
   line-height: 1.5;
   padding: 2rem;
 
-  p{
-      color: #fff;
-      max-width: 450px;
+  p {
+    color: #fff;
+    max-width: 450px;
   }
 
-  h1{
+  h1 {
     color: #ccc;
     max-width: 450px;
-
   }
 }
 
+.popular {
+  padding: 2rem;
 
-.popular{
+  h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
+.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
-    padding: 2rem;
+  .movie {
+    width: 300px;
+    min-height: 400px;
+    margin: 1rem;
+    border-radius: 3px;
+    box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--secondary-color);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
-    h1{
-        font-size: 1.5rem;
-        text-align: center;
-        margin-bottom: 1rem;
+    .image-wrapper {
+      flex: 1;
+      display: flex;
+      position: relative;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
+  }
 
-    .movies-list{
-        display:flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    
-        .movie {
-            width: 300px;
-            min-height: 400px;
-            margin: 1rem;
-            border-radius: 3px;
-            box-shadow: 0.2px 4px 5px rgba(0,0,0,0.1);
-            background-color: var(--secondary-color);
-            position:relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-    
-            img{
-                width:100%;
-                height: 100%;
-                object-fit: cover;
-            }
-    
-            .image-wrapper{
-                flex: 1;
-            }
-        }
-        
-        
-    
-        
-        .movie-info{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.5rem 1rem 1rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .movie-info h3{
-            margin-top: 0;
-            font-size: .9rem;
-        }
-        
-        p{
-            font-size: .8rem;
-        }
-        
-        .movie-info span{
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-        
-        
-        .overview{
-            position:absolute;
-            left:0;
-            right:0;
-            bottom:0;
-            background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,.8));
-            color: #f6f5f7;
-            padding: 1rem;
-            max-height: 100%;
-            transform:translateY(101%);
-            transition:transform 0.3s ease-in;
-        }
-        
-        .movie:hover .overview{
-            transform:translateY(0)
-        }        
-        
-    }
+  .movie-info {
+    padding: 0.5rem 1rem 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .movie-info h3 {
+    margin-top: 0;
+    font-size: 0.9rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  .movie-info span {
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+
+  .overview {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8));
+    color: #f6f5f7;
+    padding: 1rem;
+    max-height: 100%;
+    transform: translateY(101%);
+    transition: transform 0.3s ease-in;
+  }
+
+  .movie:hover .overview {
+    transform: translateY(0);
+  }
 }
 
+.pagination {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 
+  .current-page {
+    height: 3rem;
+    width: 3rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid $orange-color;
+    font-weight: bold;
+  }
 
-.pagination{
-    margin-top: 2rem;
-    font-size: 0.8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-
-    .current-page{
-        height: 3rem;
-        width: 3rem;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        border: 1px solid $orange-color;
-        font-weight: bold;
-    }
-
-    margin-bottom: 3rem;
+  margin-bottom: 3rem;
 }
 
 .login-wrapper {
@@ -428,4 +438,42 @@ header {
   }
 }
 
+// contact page
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  @media (max-width: $breakpoint) {
+    grid-template-columns: 1fr;
+  }
 
+  > div {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    // background-color: $orange-color;
+    // color: #f6f5f7;
+
+    h3 {
+      color: $orange-color;
+    }
+  }
+
+  .image-1 {
+    background-image: url("https://images.pexels.com/photos/16681131/pexels-photo-16681131/free-photo-of-machu-picchu-al-amanecer.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  }
+  .image-2 {
+    background-image: url("https://images.pexels.com/photos/17732243/pexels-photo-17732243/free-photo-of-tangerine-dream.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  }
+  .image-3 {
+    background-image: url("https://images.pexels.com/photos/17487082/pexels-photo-17487082/free-photo-of-tenango-de-las-flores-puebla.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load");
+  }
+
+  .grid-image {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

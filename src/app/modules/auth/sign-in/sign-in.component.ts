@@ -13,6 +13,7 @@ import { TokenService } from 'src/app/services/auth/token.service';
 export class SignInComponent implements OnInit {
 
   signInForm! : FormGroup;
+  signUpForm! : FormGroup;
   loading = false;
 
   @ViewChild('container') container! : ElementRef;
@@ -44,10 +45,37 @@ export class SignInComponent implements OnInit {
       email : ['', [Validators.required, Validators.email]],
       password : ['', Validators.required]
     })
+    this.signUpForm = this.fb.group({
+      email : ['', [Validators.required, Validators.email]],
+      password : ['', Validators.required],
+      firstName : ['', Validators.required],
+      lastName : ['', Validators.required]
+    })
   }
 
   toggleLoading(){
     this.loading = !this.loading
+  }
+
+  registerUser(){
+    if(this.signUpForm.invalid){
+      return;
+    }
+    this.toggleLoading()
+    this.authService.registerUser(this.signUpForm.value).subscribe({
+      next: (res : any) =>{
+        this.tokenService.setToken(res.token);
+        this.toastr.success('Success', 'User registered');
+
+        this.router.navigate(['/'])
+      },
+      error: (err) => {
+        this.toastr.error('Error', err.error.message);
+      },
+      complete: () => {
+        this.toggleLoading()
+      }
+    })
   }
 
   submitSignIn(){

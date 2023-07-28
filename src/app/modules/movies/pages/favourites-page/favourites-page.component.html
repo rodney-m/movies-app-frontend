@@ -1,0 +1,15 @@
+<div class="popular">
+    <h1>Favourite Movies</h1>
+  
+    <div class="movies-list">
+      <p *ngIf="loading">loading....</p>
+      <p *ngIf="!loading && movies.length == 0">No results</p>
+  
+      <app-movie-card
+        [addToFav]="false"
+        *ngFor="let movie of movies"
+        [movie]="movie"
+      ></app-movie-card>
+    </div>
+    <app-paginator [page]="page" (pageChange)="changePage($event)"></app-paginator>
+  </div>

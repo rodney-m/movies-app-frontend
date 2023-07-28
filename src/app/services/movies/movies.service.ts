@@ -1,22 +1,32 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { baseUrl } from 'src/app/data/baseUrl';
 import { Movie } from 'src/app/models/movie.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesService {
-  private apiUrl = 'https://api.themoviedb.org/3/movie/popular';
-  private authToken =
-    'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMDEyMzZhODI5OTg1OGJiZDQ2ZjRjZWU0NjFiNTRiOCIsInN1YiI6IjY0YzE4Zjk2MWNmZTNhMGViNDI5NTI4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6tHq61JHTCu3CNwUfwwAwN_yaTfcMJ-ah0l429TzQlg';
+
 
   constructor(private http: HttpClient) {}
 
   getMovies(page =1 , size = 9) : Observable<Movie[]> {
-    const headers = new HttpHeaders()
-      .set('accept', 'application/json')
-      .set('Authorization', this.authToken);
-    return this.http.get<Movie[]>(`${this.apiUrl}?page=${page}&page_size=${size}`, { headers: headers });
+    return this.http.get<Movie[]>(`${baseUrl.tmdb}/discover/movie?page=${page}&page_size=${size}`);
+  }
+
+  getFavouriteMovies(page =1 , size = 9) : Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${baseUrl.tmdb}/account/20209783/favorite/movies?page=${page}&page_size=${size}`);
+  }
+
+  addToFavourites(id : number) : Observable<any>{
+    const payload : any = {
+      media_type: 'movie',
+      media_id: id,
+      favorite: true
+    }
+    return this.http.post<any>(`${baseUrl.tmdb}/account/20209783/favorite`, payload);
+
   }
 }

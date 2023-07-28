@@ -1,0 +1,23 @@
+<div class="movie">
+    <div class="image-wrapper">
+      <img
+        [src]="'https://image.tmdb.org/t/p/original' + movie?.backdrop_path"
+      />
+    </div>
+
+    <div class="movie-info">
+      <h3>{{ movie?.title }}</h3>
+      
+      <p>{{movie.release_date | date}}</p>
+    </div>
+
+    <div class="overview">
+      <h3>Overview</h3>
+      <p>{{ movie?.overview }}</p>
+      <br />
+      <button class="know-more" *ngIf="addToFav" (click)="addToFavourites()">
+        Add to favourites &nbsp;
+        <i class="fa-solid fa-heart" style="color: #ffffff"></i>
+      </button>
+    </div>
+  </div>

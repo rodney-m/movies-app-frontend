@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Movie } from 'src/app/models/movie.model';
 import { MoviesService } from 'src/app/services/movies/movies.service';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss'],
+  selector: 'app-favourites-page',
+  templateUrl: './favourites-page.component.html',
+  styleUrls: ['./favourites-page.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class FavouritesPageComponent {
   movies: Movie[] = [ ];
   page = 1;
   loading = false;
@@ -24,7 +24,7 @@ export class HomePageComponent implements OnInit {
 
   getMovies(page : number){
     this.toggleLoading()
-    this.moviesService.getMovies(page).subscribe({
+    this.moviesService.getFavouriteMovies(page).subscribe({
       next: (res :any) => {
         this.movies = res.results;
         this.page = res.page
@@ -42,6 +42,4 @@ export class HomePageComponent implements OnInit {
     const newPage = action ==='prev' ? this.page - 1 : this.page + 1
     this.getMovies(newPage)
   }
-
-  
 }

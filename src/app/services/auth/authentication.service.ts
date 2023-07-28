@@ -14,5 +14,8 @@ export class AuthenticationService {
   login(user : LoginPayload): Observable<User> {
     return this.http.post<User>(`${baseUrl.dev}/users/login`, user);
   }
+  registerUser(user : User): Observable<User> {
+    return this.http.post<User>(`${baseUrl.dev}/users`, user);
+  }
 
 }
