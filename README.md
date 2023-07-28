@@ -2,6 +2,37 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 
+## Project Info
+
+A live instance of this site can be found here [https://agletmoviesapp.netlify.app/contact](https://agletmoviesapp.netlify.app/contact) .
+The project uses [https://developer.themoviedb.org/docs/getting-started](TMDB) api to query for movies. It uses a nodejs backend for Authentication and the backend can be found here [https://github.com/rodney-m/movies-app-backend](https://github.com/rodney-m/movies-app-backend).
+
+##Logging in into the live instance 
+
+Use the following credentials
+`
+  email : rodneymupanduki@gmail.com
+  password: admin123
+`
+
+OR 
+
+`
+  email : jointheteam@aglet.co.za
+  password: @TeamAglet
+`
+
+##Features
+
+- Authentication
+- View movies (paginated)
+- add movies to favorites
+- view favourites
+
+## Install dependencies
+
+Run `npm install` to install dependencies.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
